@@ -1,4 +1,4 @@
-# START 
+# START
 import time
 import pandas as pd
 import numpy as np
@@ -24,14 +24,14 @@ def get_filters():
             print(f">>> Great! We will analyze bikeshare data of {city} \n ")
             break
         else:
-            print(">>> Hmm, please retry- available cities are: Chicago, New York City, or Washington\n") 
-   
+            print(">>> Hmm, please retry- available cities are: Chicago, New York City, or Washington\n")
+
     while True:
-        filter_by=(input(""">>> How would you like to filter data ? Please choose one of options below: 
+        filter_by=(input(""">>> How would you like to filter data ? Please choose one of options below:
     Type "month" to filter based on month only
     Type "day" to filter based on day of the week only
     Type "both"to filter
-    Type "none" for nofilters 
+    Type "none" for nofilters
     :"""))
         month = 'all'
         day = 'all'
@@ -53,7 +53,7 @@ def get_filters():
         elif filter_by.lower() == 'none':
             print(f">>> no filters ; ) So all months and all days of the week will be included in analysis ")
             break
-        print(">>> Hmm, please retry, you can only filter by 'month' or 'day of the week' ! ")        
+        print(">>> Hmm, please retry, you can only filter by 'month' or 'day of the week' ! ")
 
     print('-'*40)
     return city, month, day,filter_by
@@ -72,15 +72,15 @@ def load_data(city, month, day):
     """
     # load data file into a dataframe
     df = pd.read_csv(CITY_DATA[city])
-    
-    # convert the Start Time column to datetime
-    df['Start Time'] = pd.to_datetime(df['Start Time']) 
 
-    # extract hour, month and day of week from Start Time to create new columns 
+    # convert the Start Time column to datetime
+    df['Start Time'] = pd.to_datetime(df['Start Time'])
+
+    # extract hour, month and day of week from Start Time to create new columns
     df["Hour"]=df['Start Time'].dt.hour
     df['Month'] = df['Start Time'].dt.month
     df['Day of Week'] =  df['Start Time'].dt.weekday_name
-    
+
     #filter by month if applicable
     if month != 'all':
         # use the index of the months list to get the corresponding int
@@ -90,7 +90,7 @@ def load_data(city, month, day):
         month = months.index(month.lower())+1
         # filter by month to create the new dataframe
         df = df[df['Month'] == month ]
-    
+
     # filter by day of week if applicable
     if day != 'all':
         # filter by day of week to create the new dataframe
@@ -117,13 +117,13 @@ def time_stats(df,filter_by):
 
     # TO DO: display the most common start hour :
     #df["hour"].mode()[0]
-    
+
     months = ['january', 'february', 'march','april',
                   'may', 'june','july','august',
                   'september','october','november','december']
     selected_month = months[df["Month"].values[0]-1]
     selected_day = df["Day of Week"].values[0]
-    
+
     if filter_by=='none':
         popular_month = df["Month"].mode()[0]
         count_popular_month = (df['Month'] == popular_month).sum()
@@ -131,12 +131,12 @@ def time_stats(df,filter_by):
         count_popular_day = (df['Day of Week'] == popular_day).sum()
         popular_hour = df["Hour"].mode()[0]
         count_popular_hour = (df['Hour'] == popular_hour).sum()
-        print(f""">> >when there are no filters: 
+        print(f""">> >when there are no filters:
     the most popular month: {popular_month} Count: {count_popular_month}
     the most popular day of week: {popular_day} Count: {count_popular_day}
     the most common start hour: {popular_hour} Count: {count_popular_hour}
     """)
-        
+
     elif filter_by=='month':
         popular_day = df["Day of Week"].mode()[0]
         count_popular_day = (df['Day of Week'] == popular_day).sum()
@@ -146,7 +146,7 @@ def time_stats(df,filter_by):
     the most popular day of week: {popular_day} Count: {count_popular_day}
     the most common start hour: {popular_hour} Count: {count_popular_hour}
     """)
-    
+
     elif filter_by=='day':
         popular_month = df["Month"].mode()[0]
         count_popular_month = (df['Month'] == popular_month).sum()
@@ -156,14 +156,14 @@ def time_stats(df,filter_by):
     the most popular month: {popular_month} Count: {count_popular_month}
     the most common start hour: {popular_hour} Count: {count_popular_hour}
     """)
-        
+
     elif filter_by=='both':
         popular_hour = df["Hour"].mode()[0]
         count_popular_hour = (df['Hour'] == popular_hour).sum()
         print(f""">>> Data is filtered by both {selected_day} and {selected_month}:
     the most common start hour: {popular_hour} Count: {count_popular_hour}
     """)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -178,22 +178,22 @@ def station_stats(df):
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
 
-    # TO DO: display most commonly used start station 
+    # TO DO: display most commonly used start station
     most_used_start= df["Start Station"].mode()[0]
     count_start= (df['Start Station'] == most_used_start).sum()
-    
-    # TO DO: display most commonly used end station 
+
+    # TO DO: display most commonly used end station
     most_used_stop= df["End Station"].mode()[0]
     count_stop= (df['End Station'] == most_used_stop).sum()
 
-    # TO DO: display most frequent combination of start station and end station trip 
+    # TO DO: display most frequent combination of start station and end station trip
     station_routes = df.groupby(['Start Station','End Station']).size()
     most_frequent_route = station_routes.idxmax()
-    
+
     #TO DO : display how many times this combination was used
     station_route_counts=df.groupby(['Start Station','End Station']).size().reset_index(name='route_counts')
-    count_most_frequent = station_route_counts['route_counts'].max()                    
-    
+    count_most_frequent = station_route_counts['route_counts'].max()
+
     print(f""">>> Station Stats:
 the most commonly used start station: {most_used_start}; used {count_start} times
 the most commonly used end station: {most_used_stop}; used {count_stop} times
@@ -201,8 +201,8 @@ the most common route is from "{most_frequent_route[0] }" to "{ most_frequent_ro
     """)
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
-    
+
+
 
 # FUNCTION 5 - trip_duration_stats(df):
 def trip_duration_stats(df):
@@ -211,12 +211,12 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    # TO DO: display total travel time:  
+    # TO DO: display total travel time:
     #df["Trip Duration"].sum()
 
     # TO DO: display mean travel time
     #df["Trip Duration"].mean()
-    
+
     print(f""">>> Trip Duration Stats
 the total travel time is: {df["Trip Duration"].sum()} seconds
 the total number of trips: {len(df["Trip Duration"])} seconds
@@ -231,24 +231,24 @@ def user_stats(df):
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-    
+
     counts_user_types = "No user_type data stored"
     counts_gender = "No gender data stored"
-    birth_years = None 
-    # TO DO: Display counts of user types  
-    
+    birth_years = None
+    # TO DO: Display counts of user types
+
     try:
         counts_user_types=df['User Type'].value_counts()
-        print(f">>> The breakdown of User Types:\n{counts_user_types}\n") 
-    except KeyError as e: 
+        print(f">>> The breakdown of User Types:\n{counts_user_types}\n")
+    except KeyError as e:
         print(f"{e} data not stored")
-        
+
     try:
         counts_gender=df['Gender'].value_counts()
-        print(f">>> The breakdown of Gender:\n{counts_gender}\n") 
-    except KeyError as e: 
+        print(f">>> The breakdown of Gender:\n{counts_gender}\n")
+    except KeyError as e:
         print(f"{e} data not stored")
-        
+
     try:
         birth_years={
             "min":df['Birth Year'].min(),
@@ -256,13 +256,13 @@ def user_stats(df):
             "most_common": df['Birth Year'].mode()[0]
         }
         print(f""">>> The breakdown of Birth Year:
-earliest year of birth: {int(df['Birth Year'].min())} 
-most recent year of birth: {int(df['Birth Year'].max())}          
+earliest year of birth: {int(df['Birth Year'].min())}
+most recent year of birth: {int(df['Birth Year'].max())}
 most common year of birth: {int(df['Birth Year'].mode()[0])}
 """)
-    except KeyError as e: 
+    except KeyError as e:
         print(f"{e} data not stored")
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -278,6 +278,10 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        
+        sample_data = input('\nWould you like view sample data ? Enter yes or no.\n')
+        if sample_data.lower() == 'yes':
+            print(df.head(10))
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
