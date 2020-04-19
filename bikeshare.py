@@ -169,9 +169,6 @@ def time_stats(df,filter_by):
 
 
 # FUNCTION 4:
-# https://stackoverflow.com/questions/19384532/get-statistics-for-each-group-such-as-count-mean-etc-using-pandas-groupby
-#https://www.geeksforgeeks.org/python-pandas-dataframe-idxmax/
-# https://stackoverflow.com/questions/36067894/pandas-get-count-of-a-single-value-in-a-column-of-a-dataframe
 def station_stats(df):
     """Displays statistics on the most popular stations and trip."""
 
