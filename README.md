@@ -5,10 +5,11 @@ Sunday, 19 April 2020
 BikeShare-Data-Analysis
 
 ### Description
-Describe what your project is about and what it does
+Use Python to understand bikeshare data in Chicago, New York and Washington
 
 ### Files used
-Include the files used
+We used data provided by [Motivate](https://www.motivateco.com/), bike share system provider for many major cities in the United States,
+
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
