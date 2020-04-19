@@ -7,7 +7,7 @@ CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
 
-# FUNCTION 1 - get_filters():
+# FUNCTION 1:
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -58,7 +58,7 @@ def get_filters():
     print('-'*40)
     return city, month, day,filter_by
 
-# FUNCTION 2 - load_data():
+# FUNCTION 2:
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
@@ -99,7 +99,7 @@ def load_data(city, month, day):
     return df
 
 
-# FUNCTION 3 - time_stats(df,filter_by):
+# FUNCTION 3:
 
 def time_stats(df,filter_by):
     """Displays statistics on the most frequent times of travel."""
@@ -168,7 +168,7 @@ def time_stats(df,filter_by):
     print('-'*40)
 
 
-# FUNCTION 4 - station_stats(df):
+# FUNCTION 4:
 # https://stackoverflow.com/questions/19384532/get-statistics-for-each-group-such-as-count-mean-etc-using-pandas-groupby
 #https://www.geeksforgeeks.org/python-pandas-dataframe-idxmax/
 # https://stackoverflow.com/questions/36067894/pandas-get-count-of-a-single-value-in-a-column-of-a-dataframe
@@ -204,7 +204,7 @@ the most common route is from "{most_frequent_route[0] }" to "{ most_frequent_ro
 
 
 
-# FUNCTION 5 - trip_duration_stats(df):
+# FUNCTION 5:
 def trip_duration_stats(df):
     """Displays statistics on the total and average trip duration."""
 
@@ -225,7 +225,7 @@ the average travel time: {df["Trip Duration"].mean()} seconds
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-# FUNCTION 6 - user_stats(df):
+# FUNCTION 6:
 def user_stats(df):
     """Displays statistics on bikeshare users."""
 
@@ -278,7 +278,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
-        
+
         sample_data = input('\nWould you like view sample data ? Enter yes or no.\n')
         if sample_data.lower() == 'yes':
             print(df.head(10))
