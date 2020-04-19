@@ -12,4 +12,6 @@ We used data provided by [Motivate](https://www.motivateco.com/), bike share sys
 
 
 ### Credits
-It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
+- [Pandas GroupBy: Your Guide to Grouping Data in Python](https://realpython.com/pandas-groupby/)
+
+- [get-statistics-for-each-group-such-as-count-mean-etc-using-pandas-groupby](https://stackoverflow.com/questions/19384532/get-statistics-for-each-group-such-as-count-mean-etc-using-pandas-groupby)
